@@ -8,22 +8,11 @@ import java.sql.*;
 import java.util.Properties;
 
 public class ConnectWithBD {
-    Connection con;
-    Statement stmt;
+   private Connection con;
+
     private static final String PATH_TO_PROPERTIES = "src/main/resources/data.properties";
 
-       public void connect() {
-        try {
-            con = getConnection();
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from clients");
-            while (rs.next())
-             System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+
     public  Connection getConnection() throws SQLException, IOException {
         Properties props = new Properties();
 
@@ -36,6 +25,7 @@ public class ConnectWithBD {
 
         return DriverManager.getConnection(url, username, password);
     }
+
     public void closeConnect(){
         try{
         con.close();
