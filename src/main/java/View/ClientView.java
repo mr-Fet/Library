@@ -36,4 +36,13 @@ public class ClientView {
     //return new Client(newId,newFirstName,newLastName);
     }
 
+    public void deleteClient(){
+        System.out.println("Введите Id клиента которого желаете удалить: ");
+
+        Scanner scanner = new Scanner(System.in);
+        int clientId = scanner.nextInt();
+
+        clientController.deleteClient(clientId);
+    }
+
 }

@@ -13,8 +13,11 @@ public class ClientController {
         //view.addClient();
         //view.refistration();sout
        // System.out.println("work");
-        System.out.println(service.createNewClient(newId,newFirstname,newLastname));
+        service.createNewClient(newId,newFirstname,newLastname);
 
+    }
+    public void deleteClient (Integer clientId){
+        service.deleteClient(clientId);
     }
 
 }

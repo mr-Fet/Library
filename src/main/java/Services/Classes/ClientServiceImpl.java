@@ -15,12 +15,12 @@ public class ClientServiceImpl implements ClientService {
 
     private ClientRepository clientRepository = new ClientRepositoryIMPL();
 
-    public Client createNewClient(Integer newId, String newFirstname, String newLastname) {
+    public void createNewClient(Integer newId, String newFirstname, String newLastname) {
 
-        return clientRepository.createClient(newId,newFirstname,newLastname);
+         clientRepository.createClient(newId,newFirstname,newLastname);
     }
 
-    public void deleteClient(int clientId) {
+    public void deleteClient(Integer clientId) {
 
         clientRepository.deleteClient(clientId);
     }

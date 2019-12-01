@@ -4,7 +4,7 @@ import Model.Client;
 import com.sun.security.ntlm.NTLMException;
 
 public interface ClientService {
-    Client createNewClient(Integer newId, String newFirstname, String newLastname) ;
-    void deleteClient(int clientId);
+    void createNewClient(Integer newId, String newFirstname, String newLastname) ;
+    void deleteClient(Integer clientId);
     void modifyClient();
 }
