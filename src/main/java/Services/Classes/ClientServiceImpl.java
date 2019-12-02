@@ -25,7 +25,8 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.deleteClient(clientId);
     }
 
-    public void modifyClient() {
+    public void modifyClient(Integer clientId, String updateFirstname, String updateLastname) {
 
+        clientRepository.modifyClient(clientId, updateFirstname, updateLastname);
     }
 }

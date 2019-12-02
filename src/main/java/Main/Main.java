@@ -4,6 +4,7 @@ import ConnectWithBD.ConnectWithBD;
 import Model.Client;
 import Model.SpisokOfEntity;
 import Repository.SearchRepositoryIMPL;
+import View.BooksView;
 import View.ClientView;
 
 import java.sql.*;
@@ -18,20 +19,18 @@ public class Main {
     static ResultSet rs;
 
     public static void main(String[] args) {
-        ClientView clientView = new ClientView();
-        // clientView.showMenu();
-         //clientView.addClient();
-        clientView.deleteClient();
-       ConnectWithBD connectWithBD = new ConnectWithBD();
+        BooksView view = new BooksView();
+        view.addBook();
 
- try {
-     stmt = connectWithBD.getConnection().createStatement();
+ try(Connection con = ConnectWithBD.getConnection()) {
 
-     ResultSet rs = stmt.executeQuery("select * from clients ");
+     stmt = con.createStatement();
+
+     rs = stmt.executeQuery("select * from books ");
      while (rs.next())
-        System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+        System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getInt(3) + " " + rs.getString(4));
 
-     connectWithBD.closeConnect();
+     //connectWithBD.closeConnect();
  }
  catch (Exception e) {
      System.out.println(e);

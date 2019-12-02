@@ -5,6 +5,7 @@ import Model.Client;
 import Model.SpisokOfEntity;
 
 import java.awt.print.Book;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Iterator;
@@ -12,16 +13,14 @@ import java.util.Map;
 
 public class ClientRepositoryIMPL implements ClientRepository {
 
-    private ConnectWithBD connectWithBD = new ConnectWithBD();
-
     private Statement stmt;
 
     public void createClient(Integer newId, String newFirstname, String newLastname) {
 
-        try {
-            stmt = connectWithBD.getConnection().createStatement();
+        try (Connection con = ConnectWithBD.getConnection()) {
+            stmt = con.createStatement();
             String query = "insert into clients (idClients, firstname, lastname)" + "VALUES (?,?,?);";
-            PreparedStatement preparedStmt = connectWithBD.getConnection().prepareStatement(query);
+            PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, newId);
             preparedStmt.setString(2, newFirstname);
             preparedStmt.setString(3, newLastname);
@@ -33,8 +32,8 @@ public class ClientRepositoryIMPL implements ClientRepository {
 
     public void deleteClient(Integer clientId) {
 
-        try {
-            PreparedStatement pstmt = connectWithBD.getConnection().prepareStatement("DELETE FROM clients where idClients = ?");
+        try (Connection con = ConnectWithBD.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM clients where idClients = ?");
             pstmt.setInt(1, clientId);
             pstmt.executeUpdate();
         }
@@ -43,20 +42,20 @@ public class ClientRepositoryIMPL implements ClientRepository {
         }
 
     }
-//        SpisokOfEntity spisok = new SpisokOfEntity();
-//        Map<Integer,Client> newMap = spisok.getClientsMap();
-//        Iterator<Map.Entry<Integer,Client>> iterator = spisok.getClientsMap().entrySet().iterator();
-//        while(iterator.hasNext()){
-//            Map.Entry<Integer, Client> entry = iterator.next();
-//            if(entry.getKey().equals(clientId)){
-//                newMap.remove(clientId);
-//            }
-//            spisok.setClientsMap(newMap);
-//        }
-//    }
 
-//    public void modifyClient() {
-//
-//    }
+   public void modifyClient(Integer clientId, String updateFirstname, String updateLastname) {
+
+       try (Connection con = ConnectWithBD.getConnection()) {
+           stmt = con.createStatement();
+           String query = "update clients set firstname = ?, lastname = ? where idClients = ?";
+           PreparedStatement preparedStmt = con.prepareStatement(query);
+           preparedStmt.setString(1, updateFirstname);
+           preparedStmt.setString(2, updateLastname);
+           preparedStmt.setInt(3, clientId);
+           preparedStmt.executeUpdate();
+       } catch (Exception e) {
+           System.out.println(e);
+       }
     }
+}
 

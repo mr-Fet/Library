@@ -9,11 +9,12 @@ import java.util.Properties;
 
 public class ConnectWithBD {
 
- private Connection con;
+
     private static final String PATH_TO_PROPERTIES = "src/main/resources/data.properties";
 
 
-    public Connection getConnection() throws SQLException, IOException {
+    public static Connection getConnection() throws  SQLException, IOException {
+
         Properties props = new Properties();
 
         FileInputStream fileInputStream = new FileInputStream(PATH_TO_PROPERTIES);
@@ -25,15 +26,5 @@ public class ConnectWithBD {
 
         return DriverManager.getConnection(url, username, password);
     }
-
-    public void closeConnect(){
-        try{
-        getConnection().close();
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    }
+}
 

@@ -20,4 +20,8 @@ public class ClientController {
         service.deleteClient(clientId);
     }
 
+    public void updateClient(Integer clientId, String updateFirstname, String updateLastname){
+        service.modifyClient(clientId, updateFirstname, updateLastname);
+    }
+
 }

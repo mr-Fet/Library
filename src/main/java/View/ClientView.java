@@ -45,4 +45,20 @@ public class ClientView {
         clientController.deleteClient(clientId);
     }
 
+    public void updateClient(){
+        System.out.println("Введите Id клиента которого желаете изменить: ");
+        Scanner scanner = new Scanner(System.in);
+        int clientId = scanner.nextInt();
+
+        System.out.println("Введите новое имя клиента: ");
+        Scanner scanner1 = new Scanner(System.in);
+        String updateFirstName = scanner1.next();
+
+        System.out.println("Введите новую фамилию клиента: ");
+        Scanner scanner2 = new Scanner(System.in);
+        String updateLastName = scanner2.next();
+
+        clientController.updateClient(clientId, updateFirstName, updateLastName);
+    }
+
 }
