@@ -4,6 +4,7 @@ import ConnectWithBD.ConnectWithBD;
 import Model.Client;
 import Model.SpisokOfEntity;
 import Repository.SearchRepositoryIMPL;
+import View.AuthorView;
 import View.BooksView;
 import View.ClientView;
 
@@ -19,14 +20,16 @@ public class Main {
     static ResultSet rs;
 
     public static void main(String[] args) {
-        BooksView view = new BooksView();
-        view.addBook();
+//        BooksView view = new BooksView();
+//        view.addBook();
+        AuthorView authorView =new AuthorView();
+       //authorView.addAuthor();
 
  try(Connection con = ConnectWithBD.getConnection()) {
 
      stmt = con.createStatement();
 
-     rs = stmt.executeQuery("select * from books ");
+     rs = stmt.executeQuery("select * from authors ");
      while (rs.next())
         System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getInt(3) + " " + rs.getString(4));
 
