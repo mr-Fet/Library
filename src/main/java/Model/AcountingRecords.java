@@ -6,8 +6,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class AcountingRecords {
 
-     private Integer id;
      private Integer accountId;
+     private Integer clientId;
      private Integer bookId;
      private Date receiptDate;
      private Date returnDate;
