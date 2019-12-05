@@ -1,8 +1,8 @@
 package Services.Classes;
 
 import ConnectWithBD.ConnectWithBD;
-import Model.Books;
-import Services.ReturnAllBooksService;
+import Model.Client;
+import Services.ReturnAllClientsService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,24 +11,27 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReturnAllBooksServiceImpl implements ReturnAllBooksService {
+public class ReturnAllClientsServiceIMPL implements ReturnAllClientsService {
+
     private Statement stmt;
     private ResultSet rs;
-    private List<Books> booksList = new ArrayList<>();
+    private List<Client> clientList = new ArrayList<>();
+
     @Override
-    public List<Books> retornAllBooks() {
+    public List<Client> returnAllClients() {
+
         try (Connection con = ConnectWithBD.getConnection()) {
             stmt = con.createStatement();
-            String query = "select * from books";
+            String query = "select * from clients";
             PreparedStatement preparedStmt = con.prepareStatement(query);
             rs = preparedStmt.executeQuery();
             while (rs.next()) {
-                booksList.add(new Books(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4)));
+                clientList.add(new Client(rs.getInt(1),rs.getString(2),rs.getString(3)));
             }
 
         } catch (Exception e) {
             System.out.println(e);
         }
-        return booksList;
+        return clientList;
     }
 }
