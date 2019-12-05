@@ -10,10 +10,8 @@ import View.*;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 public class Main {
 
@@ -23,10 +21,10 @@ public class Main {
 
     public static void main(String[] args) throws ParseException {
 
-//      ReturnAllClientsView returnAllClientsView = new ReturnAllClientsView();
-//      returnAllClientsView.returnAllClients();
-        ReturnAllBooksView returnAllBooksView = new ReturnAllBooksView();
-        returnAllBooksView.returnAllBooks();
+      ReturnAllClientsView returnAllClientsView = new ReturnAllClientsView();
+      returnAllClientsView.returnAllClients();
+        //ReturnAllBooksView returnAllBooksView = new ReturnAllBooksView();
+        //returnAllBooksView.returnAllBooks();
 // try(Connection con = ConnectWithBD.getConnection()) {
 //
 //     stmt = con.createStatement();

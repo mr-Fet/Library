@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ReturnAllClientsView {
 
-    ReturnAllClientsController returnAllClientsController = new ReturnAllClientsController();
+   private ReturnAllClientsController returnAllClientsController = new ReturnAllClientsController();
 
     public void showMenu(){
         System.out.println("Все наши клиенты: ");
@@ -16,8 +16,6 @@ public class ReturnAllClientsView {
 
     public void returnAllClients(){
         List<Client> clientList = returnAllClientsController.returnAllClients();
-        for(Client x : clientList){
-            System.out.println(x + "\n");
-        }
+        clientList.stream().map((x)->x+"\n").forEach(System.out::println);
     }
 }

@@ -3,11 +3,12 @@ package View;
 import Model.Books;
 import Services.Classes.ReturnAllBooksServiceImpl;
 import Services.ReturnAllBooksService;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 import java.util.List;
 
 public class ReturnAllBooksView {
-    ReturnAllBooksService returnAllBooksService = new ReturnAllBooksServiceImpl();
+  private ReturnAllBooksService returnAllBooksService = new ReturnAllBooksServiceImpl();
 
     public void showMenu(){
         System.out.println("Все наши клиенты: ");
@@ -15,9 +16,7 @@ public class ReturnAllBooksView {
     }
 
     public void returnAllBooks(){
-        List<Books> clientList = returnAllBooksService.retornAllBooks();
-        for(Books x : clientList){
-            System.out.println(x + "\n");
-        }
+        List<Books> bookList = returnAllBooksService.retornAllBooks();
+        bookList.stream().map((x)->x+"\n").forEach(System.out::println);
     }
 }
