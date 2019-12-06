@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.AcountingRecords;
 import Services.AccountService;
 import Services.AuthorService;
 import Services.Classes.AccountServiceIMPL;
@@ -22,5 +23,8 @@ public class AccountController {
 
     public void updateAccount(Integer accountId, Integer updateClientId, Integer updateBookId, Date updateReceiptDate, Date updateReturnDate, String UpdateStatus){
         accountService.modifyAccount(accountId,updateClientId,updateBookId,updateReceiptDate,updateReturnDate,UpdateStatus);
+    }
+    public AcountingRecords searchAccount (Integer AccountId){
+        return accountService.searchAccount(AccountId);
     }
 }

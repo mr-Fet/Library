@@ -3,6 +3,7 @@ package View;
 import Controller.ClientController;
 import Model.Client;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ClientView {
@@ -61,4 +62,15 @@ public class ClientView {
         clientController.updateClient(clientId, updateFirstName, updateLastName);
     }
 
+    public void returnAllClients(){
+        List<Client> clientList = clientController.returnAllClients();
+        clientList.stream().map((x)->x+"\n").forEach(System.out::println);
+    }
+
+    public void searchTheClient() {
+        System.out.println("Введите ID клиента: ");
+        Scanner scanner = new Scanner(System.in);
+        int clientId = scanner.nextInt();
+        System.out.println(clientController.searchClient(clientId));
+    }
 }

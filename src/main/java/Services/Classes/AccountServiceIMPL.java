@@ -1,5 +1,6 @@
 package Services.Classes;
 
+import Model.AcountingRecords;
 import Repository.AccountRepository;
 import Repository.AccountRepositoryIMPL;
 import Services.AccountService;
@@ -22,5 +23,9 @@ accountRepository.deleteAccount(accountId);
     @Override
     public void modifyAccount(Integer accountId, Integer updateClientId, Integer updateBookId, Date updateReceiptDate, Date updateReturnDate, String UpdateStatus) {
 accountRepository.modifyAccount(accountId,updateClientId,updateBookId,updateReceiptDate,updateReturnDate,UpdateStatus);
+    }
+    @Override
+    public AcountingRecords searchAccount(Integer accountId) {
+        return accountRepository.searchTheAccount(accountId);
     }
 }

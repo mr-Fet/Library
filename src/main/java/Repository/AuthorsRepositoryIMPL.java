@@ -1,14 +1,19 @@
 package Repository;
 
 import ConnectWithBD.ConnectWithBD;
+import Model.Authors;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AuthorsRepositoryIMPL  implements  AuthorsRepository{
 
     private Statement stmt;
+    private ResultSet rs;
+    private Authors selectAuthor;
+
     @Override
     public void createAuthor(Integer newAuthorId, String newAuthorFirstname, String newAuthorLastname) {
         try (Connection con = ConnectWithBD.getConnection()) {
@@ -49,5 +54,25 @@ public class AuthorsRepositoryIMPL  implements  AuthorsRepository{
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+    @Override
+    public Authors searchTheAuthors(int authorId) {
+        try (Connection con = ConnectWithBD.getConnection()) {
+            stmt = con.createStatement();
+            String query = "select * from authors where authorId = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, authorId);
+            rs = preparedStmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String firstname = rs.getString(2);
+                String lastname = rs.getString(3);
+                selectAuthor = new Authors(id,firstname,lastname);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return selectAuthor;
     }
 }

@@ -84,4 +84,11 @@ public class AccountView {
         accountController.updateAccount(updateAccountId,updateClientId,updateBookId,date,updateReturnDate,updateStatus);
     }
 
+    public void searchTheAccoutnt() {
+        System.out.println("Введите ID аккаунта: ");
+        Scanner scanner = new Scanner(System.in);
+        int accountId = scanner.nextInt();
+        System.out.println(accountController.searchAccount(accountId));
+    }
+
 }

@@ -1,15 +1,19 @@
 package Repository;
 
 import ConnectWithBD.ConnectWithBD;
+import Model.AcountingRecords;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date;
 
 public class AccountRepositoryIMPL implements AccountRepository {
 
     private Statement stmt;
+    private ResultSet rs;
+    private AcountingRecords selectAccount;
 
     @Override
     public void createNewAccount(Integer newAccountId, Integer clientId, Integer bookId, Date receiptDate, Date returnDate, String status) {
@@ -56,5 +60,29 @@ public class AccountRepositoryIMPL implements AccountRepository {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+    @Override
+    public AcountingRecords searchTheAccount(int accountId) {
+
+        try (Connection con = ConnectWithBD.getConnection()) {
+            stmt = con.createStatement();
+            String query = "select * from accountingrecords where accountId = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setInt(1, accountId);
+            rs = preparedStmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                int clientId = rs.getInt(2);
+                int BookId = rs.getInt(3);
+                Date date1 = rs.getDate(4);
+                Date date3 = rs.getDate(5);
+                String status = rs.getString(6);
+                selectAccount = new AcountingRecords(id,clientId,BookId,date1, date3,status);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return selectAccount;
     }
 }

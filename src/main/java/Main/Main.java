@@ -3,8 +3,7 @@ package Main;
 import ConnectWithBD.ConnectWithBD;
 import Model.Client;
 import Model.SpisokOfEntity;
-import Repository.SearchRepositoryIMPL;
-import Services.ReturnAllBooksService;
+//import Repository.SearchRepositoryIMPL;
 import View.*;
 
 import java.sql.*;
@@ -15,14 +14,14 @@ import java.util.Date;
 
 public class Main {
 
-    static SearchRepositoryIMPL searchTheObject = new SearchRepositoryIMPL();
-    static Statement stmt;
+        static Statement stmt;
     static ResultSet rs;
 
     public static void main(String[] args) throws ParseException {
 
-      ReturnAllClientsView returnAllClientsView = new ReturnAllClientsView();
-      returnAllClientsView.returnAllClients();
+      BooksView clientView = new BooksView();
+      clientView.returnAllBooks();
+
         //ReturnAllBooksView returnAllBooksView = new ReturnAllBooksView();
         //returnAllBooksView.returnAllBooks();
 // try(Connection con = ConnectWithBD.getConnection()) {

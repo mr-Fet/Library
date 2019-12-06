@@ -1,27 +1,33 @@
 package Controller;
 
+import Model.Client;
 import Services.Classes.ClientServiceImpl;
 import Services.ClientService;
 import View.ClientView;
 
+import java.util.List;
+
 public class ClientController {
 
-    private ClientService service = new ClientServiceImpl();
-    private ClientView view;
+    private ClientService clientService = new ClientServiceImpl();
+    //private ClientView view;
 
     public void registration(Integer newId, String newFirstname, String newLastname){
-        //view.addClient();
-        //view.refistration();sout
-       // System.out.println("work");
-        service.createNewClient(newId,newFirstname,newLastname);
+        clientService.createNewClient(newId,newFirstname,newLastname);
 
     }
     public void deleteClient (Integer clientId){
-        service.deleteClient(clientId);
+        clientService.deleteClient(clientId);
     }
 
     public void updateClient(Integer clientId, String updateFirstname, String updateLastname){
-        service.modifyClient(clientId, updateFirstname, updateLastname);
+        clientService.modifyClient(clientId, updateFirstname, updateLastname);
     }
 
+    public List<Client> returnAllClients(){
+
+        return clientService.returnAllClients();
+
+    }
+    public Client searchClient(Integer clientId){return clientService.searchClient(clientId);    }
 }

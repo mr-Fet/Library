@@ -1,7 +1,9 @@
 package View;
 
 import Controller.BooksController;
+import Model.Books;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class BooksView {
@@ -64,6 +66,17 @@ public class BooksView {
 
 
         booksController.updateBook(bookId, updateBookName, updateAuthorId, updateCathegory);
+    }
+
+    public void returnAllBooks(){
+        List<Books> bookList = booksController.returnAllBooks();
+        bookList.stream().map((x)->x+"\n").forEach(System.out::println);
+    }
+    public void searchTheBooks() {
+        System.out.println("Введите ID книги: ");
+        Scanner scanner = new Scanner(System.in);
+        int booksId = scanner.nextInt();
+        System.out.println(booksController.searchBook(booksId));
     }
 
 }

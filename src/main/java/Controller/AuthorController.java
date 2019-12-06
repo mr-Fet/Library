@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Authors;
 import Services.AuthorService;
 import Services.Classes.AuthorServiceIMPL;
 
@@ -16,5 +17,8 @@ public class AuthorController {
 
     public void updateAuthor(Integer authorId, String updateAuthorFirstname, String updateAuthorLastname){
         authorService.modifyAuthor(authorId, updateAuthorFirstname, updateAuthorLastname);
+    }
+    public Authors searchAuthor(Integer authorId){
+        return authorService.searchAuthor(authorId);
     }
 }

@@ -54,5 +54,10 @@ public class AuthorView {
 
         authorController.updateAuthor(authorId, updateAuthorFirstName, updateAuthorLastName);
     }
-
+    public void searchTheAuthors() {
+        System.out.println("Введите ID автора: ");
+        Scanner scanner = new Scanner(System.in);
+        int authorId = scanner.nextInt();
+        System.out.println(authorController.searchAuthor(authorId));
+    }
 }

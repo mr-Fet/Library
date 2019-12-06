@@ -1,5 +1,6 @@
 package Services.Classes;
 
+import Model.Authors;
 import Repository.AuthorsRepository;
 import Repository.AuthorsRepositoryIMPL;
 import Services.AuthorService;
@@ -21,5 +22,9 @@ public class AuthorServiceIMPL implements AuthorService {
     @Override
     public void modifyAuthor(Integer authorId, String updateAuthorFirstname, String updateAuthorLastname) {
         authorsRepository.modifyAuthor(authorId,updateAuthorFirstname,updateAuthorLastname);
+    }
+    @Override
+    public Authors searchAuthor(Integer authorId) {
+        return authorsRepository.searchTheAuthors(authorId);
     }
 }
