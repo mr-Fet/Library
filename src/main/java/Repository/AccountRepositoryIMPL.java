@@ -16,7 +16,7 @@ public class AccountRepositoryIMPL implements AccountRepository {
     private AcountingRecords selectAccount;
 
     @Override
-    public void createNewAccount(Integer newAccountId, Integer clientId, Integer bookId, Date receiptDate, Date returnDate, String status) {
+    public void createNewAccount(Integer newAccountId, Integer clientId, Integer bookId, String receiptDate, String returnDate, String status) {
         try (Connection con = ConnectWithBD.getConnection()) {
             stmt = con.createStatement();
             String query = "insert into accountingrecords (accountId, clientId, bookId,receiptDate,returnDate,status)" + "VALUES (?,?,?,?,?,?);";
@@ -46,7 +46,7 @@ public class AccountRepositoryIMPL implements AccountRepository {
     }
 
     @Override
-    public void modifyAccount(Integer accountId, Integer updateClientId, Integer updateBookId, Date updateReceiptDate, Date updateReturnDate, String UpdateStatus) {
+    public void modifyAccount(Integer accountId, Integer updateClientId, Integer updateBookId, String updateReceiptDate, String updateReturnDate, String UpdateStatus) {
         try (Connection con = ConnectWithBD.getConnection()) {
             stmt = con.createStatement();
             String query = "update accountingrecords set clientId = ?, bookId = ?, returnDate = ?, status = ?  where accountId = ?";

@@ -3,8 +3,6 @@ package Controller;
 import Model.Books;
 import Services.BooksService;
 import Services.Classes.BooksServiceImpl;
-import View.BooksView;
-import View.ClientView;
 
 import java.util.List;
 
@@ -27,7 +25,14 @@ public class BooksController {
 
         return booksService.returnAllBooks();
     }
-    public Books searchBook (Integer bookId){
-        return booksService.searchBook(bookId);
+
+    public Books searchBookById (Integer bookId){
+        return booksService.searchBookById(bookId);
+    }
+    public Books searchBookByAuthor (String authorLastName){
+        return booksService.searchBookByAuthor(authorLastName);
+    }
+    public Books searchBookByName (String bookName){
+        return booksService.searchBookByName(bookName);
     }
 }

@@ -9,5 +9,7 @@ public interface BooksService {
     void deleteBook(Integer bookId);
     void modifyBook(Integer bookId, String updateBookName, Integer updateAuthorId, String updateCategory);
     List<Books> returnAllBooks();
-    Books searchBook(Integer bookId);
+    Books searchBookById(Integer bookId);
+    Books searchBookByAuthor(String authorLastName);
+    Books searchBookByName(String bookName);
 }

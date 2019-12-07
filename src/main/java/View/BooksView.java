@@ -72,11 +72,23 @@ public class BooksView {
         List<Books> bookList = booksController.returnAllBooks();
         bookList.stream().map((x)->x+"\n").forEach(System.out::println);
     }
-    public void searchTheBooks() {
+    public void searchTheBooksById() {
         System.out.println("Введите ID книги: ");
         Scanner scanner = new Scanner(System.in);
         int booksId = scanner.nextInt();
-        System.out.println(booksController.searchBook(booksId));
+        System.out.println(booksController.searchBookById(booksId));
+    }
+    public void searchTheBooksByAuthor() {
+        System.out.println("Введите автора книги: ");
+        Scanner scanner = new Scanner(System.in);
+        String authorLastName = scanner.next();
+        System.out.println(booksController.searchBookByAuthor(authorLastName));
+    }
+    public void searchTheBooksByName() {
+        System.out.println("Введите название книги: ");
+        Scanner scanner = new Scanner(System.in);
+        String bookName = scanner.next();
+        System.out.println(booksController.searchBookByName(bookName));
     }
 
 }

@@ -11,7 +11,7 @@ public class AccountServiceIMPL implements AccountService {
     AccountRepository accountRepository = new AccountRepositoryIMPL();
 
     @Override
-    public void createNewAccount(Integer newAccountId, Integer clientId, Integer bookId, Date receiptDate, Date returnDate, String status) {
+    public void createNewAccount(Integer newAccountId, Integer clientId, Integer bookId, String receiptDate, String returnDate, String status) {
         accountRepository.createNewAccount(newAccountId,clientId,bookId,receiptDate,returnDate,status);
     }
 
@@ -21,7 +21,7 @@ accountRepository.deleteAccount(accountId);
     }
 
     @Override
-    public void modifyAccount(Integer accountId, Integer updateClientId, Integer updateBookId, Date updateReceiptDate, Date updateReturnDate, String UpdateStatus) {
+    public void modifyAccount(Integer accountId, Integer updateClientId, Integer updateBookId, String updateReceiptDate, String updateReturnDate, String UpdateStatus) {
 accountRepository.modifyAccount(accountId,updateClientId,updateBookId,updateReceiptDate,updateReturnDate,UpdateStatus);
     }
     @Override

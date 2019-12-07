@@ -12,7 +12,7 @@ public class AccountController {
 
     private AccountService accountService = new AccountServiceIMPL();
 
-    public void addAccount(Integer newAccountId, Integer clientId, Integer bookId, Date receiptDate, Date returnDate, String status){
+    public void addAccount(Integer newAccountId, Integer clientId, Integer bookId, String receiptDate, String returnDate, String status){
 
         accountService.createNewAccount(newAccountId,clientId,bookId,receiptDate,returnDate,status);
 
@@ -21,7 +21,7 @@ public class AccountController {
         accountService.deleteAccount(accountId);
     }
 
-    public void updateAccount(Integer accountId, Integer updateClientId, Integer updateBookId, Date updateReceiptDate, Date updateReturnDate, String UpdateStatus){
+    public void updateAccount(Integer accountId, Integer updateClientId, Integer updateBookId, String updateReceiptDate, String updateReturnDate, String UpdateStatus){
         accountService.modifyAccount(accountId,updateClientId,updateBookId,updateReceiptDate,updateReturnDate,UpdateStatus);
     }
     public AcountingRecords searchAccount (Integer AccountId){

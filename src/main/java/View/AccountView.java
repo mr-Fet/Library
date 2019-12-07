@@ -1,6 +1,7 @@
 package View;
 
 import Controller.AccountController;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 import javax.xml.crypto.Data;
 import java.text.ParseException;
@@ -18,7 +19,7 @@ public class AccountView {
         System.out.println("\n");
 
     }
-    public void addClient() throws ParseException {
+    public void addAccount() throws ParseException {
 
         System.out.println("Введите ID аккаунта: ");
         Scanner scanner = new Scanner(System.in);
@@ -33,17 +34,19 @@ public class AccountView {
         int bookId = scanner1.nextInt();
 
         Date date = new Date();
+        SimpleDateFormat returnDate = new SimpleDateFormat( "yyyy.MM.dd" );
+        String str = returnDate.format(date);
 
         System.out.println("Введите дату возврата книги: ");
         Scanner scanner3 = new Scanner(System.in);
         String dataaaa = scanner2.next();
-        Date returnDate = new SimpleDateFormat( "yyyy.MM.dd" ).parse( dataaaa );
+        //Date returnDate = new SimpleDateFormat( "yyyy.MM.dd" ).parse(dataaaa);
 
         System.out.println("Введите статус аккаунта: ");
         Scanner scanner4 = new Scanner(System.in);
         String status = scanner2.next();
 
-        accountController.addAccount(newAccountId,clientId,bookId,date,returnDate,status);
+        accountController.addAccount(newAccountId,clientId,bookId,str,dataaaa,status);
 
     }
 
@@ -81,7 +84,7 @@ public class AccountView {
         Scanner scanner4 = new Scanner(System.in);
         String updateStatus = scanner2.next();
 
-        accountController.updateAccount(updateAccountId,updateClientId,updateBookId,date,updateReturnDate,updateStatus);
+        //accountController.updateAccount(updateAccountId,updateClientId,updateBookId,date,updateReturnDate,updateStatus);
     }
 
     public void searchTheAccoutnt() {

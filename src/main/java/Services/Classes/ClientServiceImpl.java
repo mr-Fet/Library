@@ -2,11 +2,9 @@ package Services.Classes;
 
 import ConnectWithBD.ConnectWithBD;
 import Model.Client;
-import Model.SpisokOfEntity;
 import Repository.ClientRepository;
 import Repository.ClientRepositoryIMPL;
 import Services.ClientService;
-import com.sun.security.ntlm.NTLMException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
