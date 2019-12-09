@@ -19,7 +19,7 @@ public class BooksRepositoryIMPL implements BooksRepository {
 
         try (Connection con = ConnectWithBD.getConnection()) {
             stmt = con.createStatement();
-            String query = "insert into books (idBook, bookName, authorId, categoryOfBook)" + "VALUES (?,?,?,?);";
+            String query = "insert into books " + "VALUES (?,?,?,?);";
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, newBookId);
             preparedStmt.setString(2, newBookName);

@@ -16,7 +16,8 @@ public class AccountRepositoryIMPL implements AccountRepository {
     private AcountingRecords selectAccount;
 
     @Override
-    public void createNewAccount(Integer newAccountId, Integer clientId, Integer bookId, String receiptDate, String returnDate, String status) {
+    public void createNewAccount(Integer newAccountId, Integer clientId, Integer bookId, Date receiptDate, Date returnDate, String status) {
+
         try (Connection con = ConnectWithBD.getConnection()) {
             stmt = con.createStatement();
             String query = "insert into accountingrecords (accountId, clientId, bookId,receiptDate,returnDate,status)" + "VALUES (?,?,?,?,?,?);";
@@ -24,8 +25,8 @@ public class AccountRepositoryIMPL implements AccountRepository {
             preparedStmt.setInt(1, newAccountId);
             preparedStmt.setInt(2, clientId);
             preparedStmt.setInt(3, bookId);
-            preparedStmt.setString(4, receiptDate.toString());
-            preparedStmt.setString(5, returnDate.toString());
+            preparedStmt.setDate(4, (java.sql.Date) receiptDate);
+            preparedStmt.setDate(5, (java.sql.Date) returnDate);
             preparedStmt.setString(6, status);
             preparedStmt.execute();
         } catch (Exception e) {
@@ -46,14 +47,14 @@ public class AccountRepositoryIMPL implements AccountRepository {
     }
 
     @Override
-    public void modifyAccount(Integer accountId, Integer updateClientId, Integer updateBookId, String updateReceiptDate, String updateReturnDate, String UpdateStatus) {
+    public void modifyAccount(Integer accountId, Integer updateClientId, Integer updateBookId, Date updateReceiptDate, Date updateReturnDate, String UpdateStatus) {
         try (Connection con = ConnectWithBD.getConnection()) {
             stmt = con.createStatement();
             String query = "update accountingrecords set clientId = ?, bookId = ?, returnDate = ?, status = ?  where accountId = ?";
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, updateClientId);
             preparedStmt.setInt(2, updateBookId);
-            preparedStmt.setString(3, updateReturnDate.toString());
+            preparedStmt.setDate(3, (java.sql.Date) updateReturnDate);
             preparedStmt.setString(4, UpdateStatus);
             preparedStmt.setInt(5, accountId);
             preparedStmt.executeUpdate();

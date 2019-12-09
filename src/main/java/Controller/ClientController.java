@@ -1,5 +1,6 @@
 package Controller;
 
+import ConnectWithBD.ConnectWithBD;
 import Model.Client;
 import Services.Classes.ClientServiceImpl;
 import Services.ClientService;
@@ -10,7 +11,6 @@ import java.util.List;
 public class ClientController {
 
     private ClientService clientService = new ClientServiceImpl();
-    //private ClientView view;
 
     public void registration(Integer newId, String newFirstname, String newLastname){
         clientService.createNewClient(newId,newFirstname,newLastname);

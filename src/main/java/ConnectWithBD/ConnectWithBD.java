@@ -9,9 +9,7 @@ import java.util.Properties;
 
 public class ConnectWithBD {
 
-
     private static final String PATH_TO_PROPERTIES = "src/main/resources/data.properties";
-
 
     public static Connection getConnection() throws  SQLException, IOException {
 
