@@ -2,7 +2,6 @@ package View;
 
 import Controller.ClientController;
 import Model.Client;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 import java.text.ParseException;
 import java.util.InputMismatchException;
@@ -26,7 +25,7 @@ public class ClientView {
         return number2;
     }
 
-    private int showMenu(){
+    private int showMenu() throws ParseException {
         System.out.println("Добро пожаловать в меню редактирования клиента");
         System.out.println("1. Добавить клиента ");
         System.out.println("2. Удалить клиента ");
@@ -34,11 +33,19 @@ public class ClientView {
         System.out.println("4. Вывести всех клиентов ");
         System.out.println("5. Найти клиента ");
         System.out.println("6. Назад");
-        number2=0;
-           return scannerInteger();
+        try {
+            number2 = scannerInteger();
+        }
+        catch (InputMismatchException e){
+            System.out.println("Возможно вы ввели неккоректные данные " + e);
+            System.out.println("Попробуйте снова.");
+            switchClientMenu();
+        }
+
+        return number2;
     }
     public void switchClientMenu() throws ParseException {
-        //showMenu();
+
         switch (showMenu()){
             case (1): addClient();
                 break;

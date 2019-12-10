@@ -39,7 +39,7 @@ public class BooksServiceImpl  implements BooksService {
             PreparedStatement preparedStmt = con.prepareStatement(query);
             rs = preparedStmt.executeQuery();
             while (rs.next()) {
-                booksList.add(new Books(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4)));
+                booksList.add(new Books.BooksBuilder(rs.getInt(1)).setName(rs.getString(2)).setAuthorId(rs.getInt(3)).setCategory(rs.getString(4)).build());
             }
 
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public class BooksServiceImpl  implements BooksService {
                 String firstname = rs.getString(2);
                 int idAuthor = rs.getInt(3);
                 String lastname = rs.getString(4);
-                selectBook = new Books(id,firstname,idAuthor,lastname);
+                selectBook = new Books.BooksBuilder(rs.getInt(1)).setName(rs.getString(2)).setAuthorId(rs.getInt(3)).setCategory(rs.getString(4)).build();
             }
 
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class BooksServiceImpl  implements BooksService {
                 String firstname = rs.getString(2);
                 int idAuthor = rs.getInt(3);
                 String lastname = rs.getString(4);
-                selectBook = new Books(id,firstname,idAuthor,lastname);
+                selectBook = new Books.BooksBuilder(rs.getInt(1)).setName(rs.getString(2)).setAuthorId(rs.getInt(3)).setCategory(rs.getString(4)).build();
             }
 
         } catch (Exception e) {

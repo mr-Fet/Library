@@ -33,7 +33,7 @@ public class ClientServiceImpl implements ClientService {
             PreparedStatement preparedStmt = con.prepareStatement(query);
             rs = preparedStmt.executeQuery();
             while (rs.next()) {
-                clientList.add(new Client(rs.getInt(1),rs.getString(2),rs.getString(3)));
+                clientList.add(new Client.ClientBuilder(rs.getInt(1)).setFirstName(rs.getString(2)).setLastName(rs.getString(3)).build());
             }
 
         } catch (Exception e) {

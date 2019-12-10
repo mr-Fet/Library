@@ -25,18 +25,26 @@ public class BooksView {
         return number1;
     }
 
-    public int showMenu(){
+    public int showMenu() throws ParseException {
         System.out.println("Добро пожаловать в меню редактирования книг");
         System.out.println("1. Добавить книгу ");
         System.out.println("2. Удалить книгу ");
         System.out.println("3. Изменить книгу ");
         System.out.println("4. Назад");
-        number1=0;
-        return scannerInteger();
+        try {
+            number1 = scannerInteger();
+        }
+        catch (InputMismatchException e){
+            System.out.println("Возможно вы ввели неккоректные данные " + e);
+            System.out.println("Попробуйте снова.");
+            switchBooksMenu();
+        }
+
+        return number1;
     }
     public void switchBooksMenu() throws ParseException {
         switch (showMenu()){
-            case (1): addBook();
+            case (1): generalView.addBookSwitch();
 break;
             case (2): deleteBook();
 break;
@@ -126,7 +134,7 @@ break;
             System.out.println("Попробуйте снова.");
         }
         finally {
-            switchBooksMenu();
+            generalView.seachBooksSwithc();
         }
     }
     public void searchTheBooksByAuthor() throws ParseException {
@@ -140,7 +148,7 @@ break;
             System.out.println("Попробуйте снова.");
         }
         finally {
-            switchBooksMenu();
+            generalView.seachBooksSwithc();
         }
     }
     public void searchTheBooksByName() throws ParseException {
@@ -154,7 +162,7 @@ break;
             System.out.println("Попробуйте снова.");
         }
         finally {
-            switchBooksMenu();
+            generalView.seachBooksSwithc();
         }
     }
 
