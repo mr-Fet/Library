@@ -1,11 +1,9 @@
 package Services.Classes;
 
-import ConnectWithBD.ConnectWithBD;
+import DataBase.ConnectWithDBLibrary;
 import Model.Books;
 import Repository.BooksRepository;
 import Repository.BooksRepositoryIMPL;
-import Repository.ClientRepository;
-import Repository.ClientRepositoryIMPL;
 import Services.BooksService;
 
 import java.sql.Connection;
@@ -20,7 +18,7 @@ public class BooksServiceImpl  implements BooksService {
     private BooksRepository booksRepository = new BooksRepositoryIMPL();
     private Statement stmt;
     private ResultSet rs;
-    private List<Books> booksList = new ArrayList<>();
+    private List<Books> booksList;
     private Books selectBook;
 
     @Override
@@ -33,11 +31,12 @@ public class BooksServiceImpl  implements BooksService {
     public void modifyBook(Integer bookId, String updateBookName, Integer updateAuthorId, String updateCategory) {booksRepository.modifyBook(bookId,updateBookName,updateAuthorId,updateCategory);}
     @Override
     public List<Books> returnAllBooks() {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "select * from books";
             PreparedStatement preparedStmt = con.prepareStatement(query);
             rs = preparedStmt.executeQuery();
+            booksList = new ArrayList<>();
             while (rs.next()) {
                 booksList.add(new Books.BooksBuilder(rs.getInt(1)).setName(rs.getString(2)).setAuthorId(rs.getInt(3)).setCategory(rs.getString(4)).build());
             }
@@ -51,7 +50,7 @@ public class BooksServiceImpl  implements BooksService {
     @Override
     public Books searchBookByAuthor(String authorLastName) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "select * from books where authorId = (select authorId from authors where lastname = ?)";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -73,7 +72,7 @@ public class BooksServiceImpl  implements BooksService {
 
     @Override
     public Books searchBookByName(String boookName) {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "select * from books where bookName = ?";
             PreparedStatement preparedStmt = con.prepareStatement(query);

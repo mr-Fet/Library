@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Добавьте новую книгу</h2>
+<form action="/Library/AddBookServ" method="post">
+
+    Book Id:
+    <label>
+        <input type="text" name="bookId">
+    </label>
+    <br />
+    Book Name:
+    <label>
+        <input type="text" name="bookName">
+    </label>
+    <br />
+    Author Id:
+    <label>
+        <input type="text" name="authorId">
+    </label>
+    <br />
+    Category:
+    <label>
+        <input type="text" name="category">
+    </label>
+
+    <input type="submit" value="Отправить"><br>
+</form>
+<button onclick="location.href='./booksEditing.html'">Назад</button>
+</body>
+</html>

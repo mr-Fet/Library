@@ -1,6 +1,6 @@
 package Services.Classes;
 
-import ConnectWithBD.ConnectWithBD;
+import DataBase.ConnectWithDBLibrary;
 import Model.Client;
 import Repository.ClientRepository;
 import Repository.ClientRepositoryIMPL;
@@ -16,7 +16,7 @@ public class ClientServiceImpl implements ClientService {
 
     private Statement stmt;
     private ResultSet rs;
-    private List<Client> clientList = new ArrayList<>();
+    private List<Client> clientList;
     private ClientRepository clientRepository = new ClientRepositoryIMPL();
 
     public void createNewClient(Integer newId, String newFirstname, String newLastname) {clientRepository.createClient(newId,newFirstname,newLastname);}
@@ -27,11 +27,12 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> returnAllClients() {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "select * from clients";
             PreparedStatement preparedStmt = con.prepareStatement(query);
             rs = preparedStmt.executeQuery();
+            clientList = new ArrayList<>();
             while (rs.next()) {
                 clientList.add(new Client.ClientBuilder(rs.getInt(1)).setFirstName(rs.getString(2)).setLastName(rs.getString(3)).build());
             }

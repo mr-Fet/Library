@@ -1,6 +1,6 @@
 package Repository;
 
-import ConnectWithBD.ConnectWithBD;
+import DataBase.ConnectWithDBLibrary;
 import Model.Authors;
 
 import java.sql.*;
@@ -13,7 +13,7 @@ public class AuthorsRepositoryIMPL  implements  AuthorsRepository{
 
     @Override
     public void createAuthor(Integer newAuthorId, String newAuthorFirstname, String newAuthorLastname) {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "insert into authors (authorId, firstname, lastname)" + "VALUES (?,?,?);";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -31,7 +31,7 @@ public class AuthorsRepositoryIMPL  implements  AuthorsRepository{
 
     @Override
     public void deleteAuthor(Integer authorId) {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = ("select * FROM authors where authorId = ?");
             PreparedStatement pst = con.prepareStatement(query);
@@ -53,7 +53,7 @@ public class AuthorsRepositoryIMPL  implements  AuthorsRepository{
 
     @Override
     public void modifyAuthor(Integer authorId, String updateAuthorFirstname, String updateAuthorLastname) {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query1 = ("select * FROM authors where authorId = ?");
             PreparedStatement pst = con.prepareStatement(query1);
@@ -76,7 +76,7 @@ public class AuthorsRepositoryIMPL  implements  AuthorsRepository{
     }
     @Override
     public Authors searchTheAuthors(int authorId) {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "select * from authors where authorId = ?";
             PreparedStatement preparedStmt = con.prepareStatement(query);

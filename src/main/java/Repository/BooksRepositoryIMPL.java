@@ -1,6 +1,6 @@
 package Repository;
 
-import ConnectWithBD.ConnectWithBD;
+import DataBase.ConnectWithDBLibrary;
 import Model.Books;
 
 import java.sql.*;
@@ -14,7 +14,7 @@ public class BooksRepositoryIMPL implements BooksRepository {
     @Override
     public void createBook(Integer newBookId, String newBookName, Integer newAuthorId, String newCategory) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "insert into books " + "VALUES (?,?,?,?);";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -35,7 +35,7 @@ public class BooksRepositoryIMPL implements BooksRepository {
     @Override
     public void deleteBook(Integer bookId) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = ("select * FROM books where idBook = ?");
             PreparedStatement pst = con.prepareStatement(query);
@@ -59,7 +59,7 @@ public class BooksRepositoryIMPL implements BooksRepository {
     @Override
     public void modifyBook(Integer bookId, String updateBookName, Integer updateAuthorId, String updateCategory) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query1 = ("select * FROM books where idBook = ?");
             PreparedStatement pst = con.prepareStatement(query1);
@@ -86,7 +86,7 @@ public class BooksRepositoryIMPL implements BooksRepository {
     @Override
     public Books searchTheBooks(int booksId) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "select * from books where idBook = ?";
             PreparedStatement preparedStmt = con.prepareStatement(query);

@@ -1,6 +1,6 @@
 package Repository;
 
-import ConnectWithBD.ConnectWithBD;
+import DataBase.ConnectWithDBLibrary;
 import Model.AcountingRecords;
 
 import java.sql.*;
@@ -15,7 +15,7 @@ public class AccountRepositoryIMPL implements AccountRepository {
     @Override
     public void createNewAccount(Integer newAccountId, Integer clientId, Integer bookId, Date receiptDate, Date returnDate, String status) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "insert into accountingrecords (accountId, clientId, bookId,receiptDate,returnDate,status)" + "VALUES (?,?,?,?,?,?);";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -37,7 +37,7 @@ public class AccountRepositoryIMPL implements AccountRepository {
 
     @Override
     public void deleteAccount(Integer accountId) {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = ("select * FROM accountingrecords where accountId = ?");
             PreparedStatement pst = con.prepareStatement(query);
@@ -59,7 +59,7 @@ public class AccountRepositoryIMPL implements AccountRepository {
 
     @Override
     public void modifyAccount(Integer accountId, Integer updateClientId, Integer updateBookId, Date updateReceiptDate, Date updateReturnDate, String UpdateStatus) {
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query1 = ("select * FROM accountingrecords where accountId = ?");
             PreparedStatement pst = con.prepareStatement(query1);
@@ -85,7 +85,7 @@ public class AccountRepositoryIMPL implements AccountRepository {
     @Override
     public AcountingRecords searchTheAccount(int accountId) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "select * from accountingrecords where accountId = ?";
             PreparedStatement preparedStmt = con.prepareStatement(query);

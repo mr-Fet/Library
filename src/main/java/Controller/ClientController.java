@@ -1,10 +1,8 @@
 package Controller;
 
-import ConnectWithBD.ConnectWithBD;
 import Model.Client;
 import Services.Classes.ClientServiceImpl;
 import Services.ClientService;
-import View.ClientView;
 
 import java.util.List;
 
@@ -14,8 +12,8 @@ public class ClientController {
 
     public void registration(Integer newId, String newFirstname, String newLastname){
         clientService.createNewClient(newId,newFirstname,newLastname);
-
     }
+
     public void deleteClient (Integer clientId){
         clientService.deleteClient(clientId);
     }
@@ -29,5 +27,6 @@ public class ClientController {
         return clientService.returnAllClients();
 
     }
+
     public Client searchClient(Integer clientId){return clientService.searchClient(clientId);    }
 }

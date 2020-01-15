@@ -1,8 +1,8 @@
 package Repository;
 
-import ConnectWithBD.ConnectWithBD;
+import DataBase.ConnectWithDBLibrary;
 import Model.Client;
-import java.io.IOException;
+
 import java.sql.*;
 
 public class ClientRepositoryIMPL implements ClientRepository {
@@ -13,7 +13,7 @@ public class ClientRepositoryIMPL implements ClientRepository {
 
     public void createClient(Integer newId, String newFirstname, String newLastname) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "insert into clients (idClients, firstname, lastname)" + "VALUES (?,?,?);";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -25,7 +25,7 @@ public class ClientRepositoryIMPL implements ClientRepository {
         catch (SQLIntegrityConstraintViolationException ex){
             System.out.println("Клиент с таким ID уже существует");
         }
-        catch (SQLException | IOException e) {
+        catch (SQLException e) {
             System.out.println(e);
         }
 
@@ -33,9 +33,9 @@ public class ClientRepositoryIMPL implements ClientRepository {
 
     public void deleteClient(Integer clientId) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
-            String query = ("select * FROM clients where idClients = ?");
+            String query = "select * FROM clients where idClients = ?";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setInt(1, clientId);
             rs = pst.executeQuery();
@@ -57,7 +57,7 @@ public class ClientRepositoryIMPL implements ClientRepository {
 
    public void modifyClient(Integer clientId, String updateFirstname, String updateLastname) {
 
-       try (Connection con = ConnectWithBD.getConnection()) {
+       try (Connection con = ConnectWithDBLibrary.getConnection()) {
            stmt = con.createStatement();
            String query1 = ("select * FROM clients where idClients = ?");
            PreparedStatement pst = con.prepareStatement(query1);
@@ -82,7 +82,7 @@ public class ClientRepositoryIMPL implements ClientRepository {
     @Override
     public Client searchTheClient(int clientId) {
 
-        try (Connection con = ConnectWithBD.getConnection()) {
+        try (Connection con = ConnectWithDBLibrary.getConnection()) {
             stmt = con.createStatement();
             String query = "select * from clients where idClients = ?";
             PreparedStatement preparedStmt = con.prepareStatement(query);
