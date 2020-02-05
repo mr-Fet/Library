@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Loop</title>
+    <style>table th, table td {padding: 5px;}</style>
+</head>
+
+<body>
+
+<h1>Результат поиска</h1>
+
+<table border="1">
+    <tr>
+        <th>Account ID</th>
+        <th>Client ID</th>
+        <th>Book ID</th>
+        <th>Receipt Date</th>
+        <th>Return Date</th>
+        <th>Status</th>
+        <th>Delete account</th>
+        <th>Update account</th>
+    </tr>
+
+
+        <td th:text="${searchAkk.accountId}">Account ID</td>
+        <td th:text="${searchAkk.clientId}">Client ID</td>
+        <td th:text="${searchAkk.bookId}">Book ID</td>
+        <td th:text="${searchAkk.receiptDate}">Receipt Date</td>
+        <td th:text="${searchAkk.returnDate}">Return Date</td>
+        <td th:text="${searchAkk.status}">Status</td>
+        <td>
+            <a th:href="@{/Accounts/deleteAccount/__${searchAkk.accountId}__}"><button type="submit">Delete</button></a>
+        </td>
+        <td>
+            <a th:href="@{/Accounts/updateAccount1/__${searchAkk.accountId}__}"><button type="submit">Update</button></a>
+        </td>
+
+
+</table>
+
+</body>
+
+</html>

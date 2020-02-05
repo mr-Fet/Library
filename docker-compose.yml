@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mysql-docker-container:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=fetOlegovich134911996
+      - MYSQL_DATABASE=library
+      - MYSQL_USER=root1
+      - MYSQL_PASSWORD=fetOlegovich134911996
+    volumes:
+      - /data/mysql 
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+  spring-boot-jpa-app:
+    image: spring-boot-jpa-image
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-docker-container
+    ports:
+      - 8087:8080
+    volumes:
+      - /data/spring-boot-app
+    networks:
+      - backend
+networks:
+       backend:

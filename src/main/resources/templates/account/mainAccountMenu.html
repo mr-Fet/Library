@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Loop</title>
+    <style>table th, table td {padding: 5px;}</style>
+</head>
+
+<body>
+<h1>Меню редактирования аккаунтов</h1>
+<h2>Добавить аккаунт</h2>
+<form th:action="@{/Accounts/addAccount}" th:object="${newAccount}" method="post">
+
+    Client ID:
+    <label>
+        <td><input type="text" th:field="${newAccount.clientId}" th:value="${newAccount.clientId}" /></td>
+    </label>
+    <br />
+    Book Id:
+    <label>
+        <td><input type="text" th:field="${newAccount.bookId}" th:value="${newAccount.bookId}" /></td>
+    </label>
+    <br />
+    Receipt Date (date format: yyyy.MM.dd):
+    <label>
+        <td><input type="date" th:field="${newAccount.receiptDate}" th:value="${newAccount.receiptDate}" /></td>
+    </label>
+    <br />
+    Return Date (date format: yyyy.MM.dd):
+    <label>
+        <td><input type="date" th:field="${newAccount.returnDate}" th:value="${newAccount.returnDate}" /></td>
+    </label>
+    <br />
+    Status (Свободна/Занята):
+    <label>
+        <td><input type="text" th:field="${newAccount.status}" th:value="${newAccount.status}" /></td>
+    </label>
+    <br />
+
+    <input type="submit" value="Отправить">
+</form>
+
+<h2>Поиск аккаунта по ID</h2>
+<form action="/Accounts/searchAccount" method="get">
+    Account ID:
+    <label>
+        <input type="text" name="accountId">
+    </label>
+    <br />
+    <input type="submit" value="Отправить">
+</form>
+
+<h1>Список аккаунтов</h1>
+
+<table border="1">
+    <tr>
+        <th>Account ID</th>
+        <th>Client ID</th>
+        <th>Book ID</th>
+        <th>Receipt Date</th>
+        <th>Return Date</th>
+        <th>Status</th>
+        <th>Delete account</th>
+        <th>Update account</th>
+    </tr>
+
+    <tr th:each="akk : ${allAccount}">
+        <td th:text="${akk.accountId}">Account ID</td>
+        <td th:text="${akk.clientId}">Client ID</td>
+        <td th:text="${akk.bookId}">Book ID</td>
+        <td th:text="${akk.receiptDate}">Receipt Date</td>
+        <td th:text="${akk.returnDate}">Return Date</td>
+        <td th:text="${akk.status}">Status</td>
+        <td>
+            <a th:href="@{/Accounts/deleteAccount/__${akk.accountId}__}"><button type="submit">Delete</button></a>
+        </td>
+        <td>
+            <a th:href="@{/Accounts/updateAccount1/__${akk.accountId}__}"><button type="submit">Update</button></a>
+        </td>
+    </tr>
+
+</table>
+<br>
+<button onclick="location.href='/dataEditing.html'">Назад</button>
+
+</body>
+
+</html>

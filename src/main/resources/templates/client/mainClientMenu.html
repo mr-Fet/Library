@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Loop</title>
+    <style>table th, table td {padding: 5px;}</style>
+</head>
+
+<body>
+<h1>Меню редактирования клиентов</h1>
+<h2>Создайте нового клиента</h2>
+<form th:action="@{/Client/addClient}" th:object="${newClient}" method="post">
+
+    firstName:
+    <label>
+        <td><input type="text" th:field="${newClient.firstName}" th:value="${newClient.firstName}" /></td>
+    </label>
+    <br />
+    lastName:
+    <label>
+        <td><input type="text" th:field="${newClient.lastName}" th:value="${newClient.lastName}" /></td>
+    </label>
+    <br />
+
+    <input type="submit" value="Отправить">
+</form>
+
+<h2>Поиск клиента по фамилии</h2>
+<form action="/Client/searchClient" method="get">
+    Client lastName:
+    <label>
+        <input type="text" name="lastName">
+    </label>
+    <br />
+    <input type="submit" value="Отправить">
+</form>
+
+<h1>Список Клиентов</h1>
+
+<table border="1">
+    <tr>
+        <th>Client ID</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Delete Client</th>
+        <th>Update Client</th>
+    </tr>
+
+    <tr th:each="client : ${allClient}">
+        <td th:text="${client.clientId}">Client ID</td>
+        <td th:text="${client.firstName}">Name</td>
+        <td th:text="${client.lastName}">Last Name</td>
+        <td>
+                <a th:href="@{/Client/deleteClient/__${client.clientId}__}"><button type="submit">Delete</button></a>
+        </td>
+        <td>
+            <a th:href="@{/Client/updateClient1/__${client.clientId}__}"><button type="submit">Update</button></a>
+        </td>
+    </tr>
+
+</table>
+<br>
+<button onclick="location.href='/dataEditing.html'">Назад</button>
+</body>
+
+</html>

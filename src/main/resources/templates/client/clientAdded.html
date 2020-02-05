@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Client Added</title>
+</head>
+
+<body>
+
+<h1>Клиент с ID: <td th:text="${}"> </td></h1>
+
+    <td th:text="${searchAkk.accountId}">Account ID</td>
+    <td th:text="${searchAkk.clientId}">Client ID</td>
+    <td th:text="${searchAkk.bookId}">Book ID</td>
+    <td th:text="${searchAkk.receiptDate}">Receipt Date</td>
+    <td th:text="${searchAkk.returnDate}">Return Date</td>
+    <td th:text="${searchAkk.status}">Status</td>
+    <td>
+        <a th:href="@{/Accounts/deleteAccount/__${searchAkk.accountId}__}"><button type="submit">Delete</button></a>
+    </td>
+    <td>
+        <a th:href="@{/Accounts/updateAccount1/__${searchAkk.accountId}__}"><button type="submit">Update</button></a>
+    </td>
+
+
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Loop</title>
+    <style>table th, table td {padding: 5px;}</style>
+</head>
+
+<body>
+<h1>Список Книг</h1>
+
+<table border="1">
+    <tr>
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>Author ID</th>
+        <th>Category</th>
+
+    </tr>
+
+    <tr th:each="book : ${returnAllBooks}">
+        <td th:text="${book.bookId}">Book ID</td>
+        <td th:text="${book.bookName}">Book Name</td>
+        <td th:text="${book.authorId}">Author ID</td>
+        <td th:text="${book.category}">Category</td>
+    </tr>
+
+    <tr>
+    <br>
+    <button onclick="location.href='/mainMenu.html'">Назад</button>
+    </tr>
+</table>
+
+</body>
+
+</html>

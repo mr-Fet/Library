@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+<h2>Обновите автора</h2>
+<form th:action="@{/Authors/updateAccount2}" th:object="${updateAuthor}" method="post">
+
+    firstName:
+    <label>
+        <td><input type="text" th:field="${updateAuthor.firstName}" th:value="${updateAuthor.firstName}" /></td>
+    </label>
+    <br />
+    lastName:
+    <label>
+        <td><input type="text" th:field="${updateAuthor.lastName}" th:value="${updateAuthor.lastName}" /></td>
+    </label>
+    <br />
+
+    <input type="submit" value="Отправить">
+</form>
+</body>
+</html>

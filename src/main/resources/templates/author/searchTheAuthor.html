@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Loop</title>
+    <style>table th, table td {padding: 5px;}</style>
+</head>
+
+<body>
+
+<h1>Результат поиска</h1>
+
+<table border="1">
+    <tr>
+        <th>Author ID</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Delete Client</th>
+        <th>Update Client</th>
+    </tr>
+
+    <tr th:each="authors : ${searchAuthors}">
+        <td th:text="${authors.authorId}">Author ID</td>
+        <td th:text="${authors.firstName}">Name</td>
+        <td th:text="${authors.lastName}">Last Name</td>
+        <td>
+            <a th:href="@{/Authors/deleteAuthor/__${authors.authorId}__}"><button type="submit">Delete</button></a>
+        </td>
+        <td>
+            <a th:href="@{/Authors/updateAuthor1/__${authors.authorId}__}"><button type="submit">Update</button></a>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+
+</html>
